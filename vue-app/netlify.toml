@@ -2,7 +2,7 @@
 [build]
     base = "/vue-app"
     command = "vite build"
-    functions = "/.netlify/functions"
+    functions = "/netlify/functions"
     publish = "/dist"
 
 ## Uncomment to use this redirect for Single Page Applications
