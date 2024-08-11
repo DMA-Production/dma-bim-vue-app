@@ -1,7 +1,7 @@
 // netlify/functions/aps-auth-callback.mjs
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
-exports.handler = async function(event, context) {
+export async function handler(event, context) {
   const clientId = process.env.APS_CLIENT_ID;
   const clientSecret = process.env.APS_CLIENT_SECRET;
   const redirectUri = process.env.APS_REDIRECT_URI;
@@ -54,4 +54,4 @@ exports.handler = async function(event, context) {
     statusCode: 200,
     body: JSON.stringify({ user: userData }),
   };
-};
+}

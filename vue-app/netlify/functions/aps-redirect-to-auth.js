@@ -1,5 +1,5 @@
 // netlify/functions/aps-redirect-to-auth.js
-exports.handler = async function(event, context) {
+export async function handler(event, context) {
     const clientId = process.env.APS_CLIENT_ID;
     const redirectUri = process.env.APS_REDIRECT_URI;
     var encodeRedirectUri = encodeURIComponent(redirectUri);
@@ -11,5 +11,5 @@ exports.handler = async function(event, context) {
         Location: `https://developer.api.autodesk.com/authentication/v2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${encodeRedirectUri}&scope=data:read`
       },
     };
-  };
+  }
   
