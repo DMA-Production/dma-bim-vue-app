@@ -1,5 +1,5 @@
 // netlify/functions/aps-auth-callback.mjs
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
 export async function handler(event) {
   // eslint-disable-next-line no-undef
