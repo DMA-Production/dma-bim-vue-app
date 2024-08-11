@@ -2,15 +2,11 @@
 const fetch = require('node-fetch');
 
 exports.handler = async function(event, context) {
-  // eslint-disable-next-line no-undef
   const clientId = process.env.APS_CLIENT_ID;
-  // eslint-disable-next-line no-undef
   const clientSecret = process.env.APS_CLIENT_SECRET;
-  // eslint-disable-next-line no-undef
   const redirectUri = process.env.APS_REDIRECT_URI;
   const code = event.queryStringParameters.code;
   var basicHeader = String('\'Basic ', btoa(clientId,':',clientSecret),'\'');
-  // var encodeRedirectUri = encodeURIComponent(redirectUri); 
 
   if (!code) {
     return {
