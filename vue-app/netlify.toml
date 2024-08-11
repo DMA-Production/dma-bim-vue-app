@@ -11,3 +11,13 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[functions]
+  ## Sets a custom directory for Netlify Functions
+  directory = "netlify/functions/"
+
+  ## Specifies `esbuild` for functions bundling
+  node_bundler = "esbuild"
+
+  ## Flags "node-fetch" as an external node module for all functions
+  external_node_modules = ["node-fetch"]
