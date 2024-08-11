@@ -1,7 +1,7 @@
 // netlify/functions/aps-auth-callback.mjs
-import fetch from "node-fetch";
+const fetch = require('node-fetch');
 
-export async function handler(event, context) {
+exports.handler = async function(event, context) {
   // eslint-disable-next-line no-undef
   const clientId = process.env.APS_CLIENT_ID;
   // eslint-disable-next-line no-undef

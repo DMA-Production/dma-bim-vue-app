@@ -2,7 +2,6 @@
 [build]
     base = "/vue-app"
     command = "vite build"
-    functions = "/netlify/functions"
     publish = "/dist"
 
 ## Uncomment to use this redirect for Single Page Applications
@@ -14,10 +13,10 @@
 
 [functions]
   ## Sets a custom directory for Netlify Functions
-  directory = "netlify/functions/"
+  directory = "/netlify/functions/"
 
   ## Specifies `esbuild` for functions bundling
   node_bundler = "esbuild"
 
   ## Flags "node-fetch" as an external node module for all functions
-  external_node_modules = ["node-fetch"]
+  ## external_node_modules = ["node-fetch"]
