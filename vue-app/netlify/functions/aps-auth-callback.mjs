@@ -1,4 +1,4 @@
-// netlify/functions/github-callback.js
+// netlify/functions/aps-auth-callback.mjs
 const fetch = require('node-fetch');
 
 exports.handler = async function(event, context) {
