@@ -30,8 +30,7 @@ exports.handler = async function(event, context) {
   });
 
   const tokenData = await tokenResponse.json();
-  console.log(tokenData);
-
+  
   if (tokenData.error) {
     return {
       statusCode: 400,
@@ -40,19 +39,19 @@ exports.handler = async function(event, context) {
   }
 
   const accessToken = tokenData.access_token;
-  console.log(accessToken);
-
-  // Use the access token to access protected resources
-  const userResponse = await fetch('https://api.github.com/user', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-
-  const userData = await userResponse.json();
+  setAccessTokenCookie(accessToken, 60);
 
   return {
     statusCode: 200,
     body: JSON.stringify({ user: userData }),
   };
+}
+
+function setAccessTokenCookie(token, minutesToExpire = 60) {
+  const now = new Date();
+  now.setTime(now.getTime() + (minutesToExpire * 60 * 1000));
+  const expires = "expires=" + now.toUTCString();
+
+  // Set the cookie with attributes
+  document.cookie = `access_token=${token}; ${expires}; path=/; Secure; HttpOnly; SameSite=Lax`;
 }
