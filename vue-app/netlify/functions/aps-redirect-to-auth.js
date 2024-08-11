@@ -1,6 +1,8 @@
 // netlify/functions/aps-redirect-to-auth.js
-export async function handler(event, context) {
+export async function handler() {
+    // eslint-disable-next-line no-undef
     const clientId = process.env.APS_CLIENT_ID;
+    // eslint-disable-next-line no-undef
     const redirectUri = process.env.APS_REDIRECT_URI;
     var encodeRedirectUri = encodeURIComponent(redirectUri);
   

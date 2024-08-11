@@ -1,9 +1,12 @@
 // netlify/functions/aps-auth-callback.mjs
 import fetch from 'node-fetch';
 
-export async function handler(event, context) {
+export async function handler(event) {
+  // eslint-disable-next-line no-undef
   const clientId = process.env.APS_CLIENT_ID;
+  // eslint-disable-next-line no-undef
   const clientSecret = process.env.APS_CLIENT_SECRET;
+  // eslint-disable-next-line no-undef
   const redirectUri = process.env.APS_REDIRECT_URI;
   const code = event.queryStringParameters.code;
   var basicHeader = String('\'Basic ', btoa(clientId,':',clientSecret),'\'');
