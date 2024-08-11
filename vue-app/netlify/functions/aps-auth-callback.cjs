@@ -30,6 +30,7 @@ exports.handler = async function(event, context) {
   });
 
   const tokenData = await tokenResponse.json();
+  console.log(tokenData);
 
   if (tokenData.error) {
     return {
@@ -39,6 +40,7 @@ exports.handler = async function(event, context) {
   }
 
   const accessToken = tokenData.access_token;
+  console.log(accessToken);
 
   // Use the access token to access protected resources
   const userResponse = await fetch('https://api.github.com/user', {
