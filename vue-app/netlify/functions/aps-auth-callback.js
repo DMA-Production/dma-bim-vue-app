@@ -7,6 +7,7 @@ exports.handler = async function(event, context) {
   const redirectUri = process.env.APS_REDIRECT_URI;
   const code = event.queryStringParameters.code;
   var basicHeader = String('\'Basic ', btoa(clientId,':',clientSecret),'\'');
+  // var encodeRedirectUri = encodeURIComponent(redirectUri); 
 
   if (!code) {
     return {
@@ -22,11 +23,11 @@ exports.handler = async function(event, context) {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': basicHeader,
     },
-    body: JSON.stringify({
-      String: 'grant_type=authorization_code',
-      code: String('code=', code),
-      redirectUri: String('redirect_uri=', redirectUri),
-    }),
+    data: {
+      'grant_type': 'authorization_code',
+      'code': code,
+      'redirectUri': redirectUri,
+    },
   });
 
   const tokenData = await tokenResponse.json();
