@@ -4,7 +4,9 @@ const fetch = require('node-fetch');
 exports.handler = async function(event, context) {
   const clientId = process.env.APS_CLIENT_ID;
   const clientSecret = process.env.APS_CLIENT_SECRET;
+  const redirectUri = process.env.APS_REDIRECT_URI;
   const code = event.queryStringParameters.code;
+  var basicHeader = String('\'Basic ', btoa(clientId,':',clientSecret),'\'');
 
   if (!code) {
     return {
@@ -14,16 +16,16 @@ exports.handler = async function(event, context) {
   }
 
   // Exchange the authorization code for an access token
-  const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+  const tokenResponse = await fetch('https://developer.api.autodesk.com/authentication/v2/token', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': basicHeader,
     },
     body: JSON.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      code: code,
+      String: 'grant_type=authorization_code',
+      code: String('code=', code),
+      redirectUri: String('redirect_uri=', redirectUri),
     }),
   });
 
